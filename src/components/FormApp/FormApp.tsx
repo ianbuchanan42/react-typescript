@@ -68,22 +68,54 @@ const useFormValidation = (formData: FormData): ValidationErrors => {
 };
 
 /*
- * FormField Component
- * Demonstrates:
- * - Reusable component pattern
- * - TypeScript props interface
- * - Conditional error rendering
- * - Accessibility attributes
+ * FormFieldProps Interface
+ * Defines the contract for props passed to the FormField component
  */
 interface FormFieldProps {
+  /** The label text displayed above the form field */
   label: string;
+
+  /**
+   * Type of the input field
+   * Union type restricting to specific HTML input types and textarea
+   * This ensures type safety and prevents invalid input types
+   */
   type: 'text' | 'email' | 'tel' | 'textarea';
+
+  /**
+   * Name of the form field
+   * Uses keyof to ensure name matches a key in FormData interface
+   * This creates a type-safe connection between the field and form data
+   */
   name: keyof FormData;
+
+  /**
+   * Current value of the input field
+   * Controlled component pattern - React manages the input state
+   */
   value: string;
+
+  /**
+   * Change handler function
+   * Accepts change events from both input and textarea elements
+   * Uses union type to handle both element types in one prop
+   */
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+
+  /**
+   * Optional error message
+   * Undefined when no error exists
+   * String containing error message when validation fails
+   */
   error?: string;
+
+  /**
+   * Optional required field flag
+   * Used for both HTML5 validation and UI indication
+   * Defaults to false if not provided
+   */
   required?: boolean;
 }
 
@@ -167,7 +199,33 @@ const FormApp = () => {
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Move validation outside the callback to fix the React Hook error
+  /*
+   * Form Validation Strategy
+   *
+   * Derived State Pattern:
+   * - validationErrors is computed directly from formData
+   * - Not stored in state because it's completely determined by formData
+   * - React will automatically recompute this when formData changes
+   *
+   * Benefits of this approach:
+   * 1. Single Source of Truth
+   *    - Validation state can't get out of sync with form data
+   *    - No need to manage multiple related states
+   *
+   * 2. Automatic Updates
+   *    - No need for useEffect to sync states
+   *    - No risk of forgetting to update validation
+   *    - No stale validation state possible
+   *
+   * 3. Simpler Mental Model
+   *    - formData is the source of truth
+   *    - validationErrors is always the current validation state
+   *    - No need to track when/how validation state updates
+   *
+   * Note: We still use errors useState for UI purposes
+   * - errors shows what we want to display to the user
+   * - validationErrors is what's currently invalid
+   */
   const validationErrors = useFormValidation(formData);
 
   /*
@@ -230,7 +288,7 @@ const FormApp = () => {
      * Using <main> as it represents the main content of the document
      * This helps screen readers identify the primary content area
      */
-    <main className='form-app'>
+    <section className='form-app'>
       {/* <h1> is semantically correct for the main heading of the section */}
       <h1 className='sf-text-title'>Contact Form</h1>
 
@@ -310,7 +368,7 @@ const FormApp = () => {
           Message sent successfully!
         </div>
       )}
-    </main>
+    </section>
   );
 };
 
