@@ -1,0 +1,162 @@
+/* Apple-Inspired Design System
+ * This file contains our core design tokens and utility classes following Apple's Human Interface Guidelines
+ */
+
+:root {
+  /* Colors - Based on Apple's color system */
+  --sf-blue: #007aff;
+  --sf-gray: #8e8e93;
+  --sf-background: #ffffff;
+  --sf-text: #000000;
+  --sf-secondary-text: #6c6c70;
+  --sf-border: #c6c6c8;
+  --sf-error: #ff3b30;
+  --sf-success: #34c759;
+
+  /* Typography - Apple uses SF Pro family */
+  --sf-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  /* Spacing - Based on 8-point grid system */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* Base Styles */
+body {
+  font-family: var(--sf-font-family);
+  color: var(--sf-text);
+  background-color: var(--sf-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility Classes */
+.sf-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Button Styles */
+.sf-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.sf-button--primary {
+  background-color: var(--sf-blue);
+  color: white;
+}
+
+.sf-button--primary:hover {
+  opacity: 0.9;
+}
+
+/* Form Styles */
+.sf-input {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--sf-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--sf-font-family);
+  transition: border-color var(--transition-fast);
+}
+
+.sf-input:focus {
+  outline: none;
+  border-color: var(--sf-blue);
+}
+
+/* Card Component */
+.sf-card {
+  background: var(--sf-background);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Grid Layout Utilities */
+.sf-grid {
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Flexbox Utilities */
+.sf-flex {
+  display: flex;
+}
+
+.sf-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sf-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Typography Utilities */
+.sf-text-title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.sf-text-subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--sf-secondary-text);
+}
+
+/* 
+ * Visually Hidden Utility Class
+ * Hides content visually while keeping it accessible to screen readers
+ * Based on WebAIM's recommendation for visually hidden content
+ */
+.visually-hidden {
+  /* Hide element visually */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+
+  /* Ensure element is still accessible */
+  /* These properties can be uncommented if you want the element to remain focusable */
+  /* &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  } */
+}

@@ -1,0 +1,154 @@
+/* TodoApp.css
+ * This file demonstrates various CSS concepts following Apple's design principles
+ */
+
+.todo-app {
+  /* Using CSS Grid for layout */
+  display: grid;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl) 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Input Container - Flexbox Layout
+ * Using flexbox for horizontal alignment with gap
+ */
+.todo-input-container {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.todo-input {
+  /* Custom styling while maintaining Apple's aesthetic */
+  flex: 1;
+  font-size: 16px;
+  background-color: var(--sf-background);
+}
+
+/* Todo List Styling
+ * Using modern CSS features for smooth animations and transitions
+ */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.todo-item {
+  /* CSS Grid for layout within todo items */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--sf-background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--sf-border);
+
+  /* Smooth transition for hover and active states */
+  transition: all var(--transition-fast);
+}
+
+.todo-item:hover {
+  /* Subtle interaction feedback */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.todo-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Custom Checkbox Styling
+ * Creating an Apple-style checkbox using pseudo-elements
+ */
+.todo-checkbox {
+  /* Reset default styles */
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  cursor: pointer;
+  position: relative;
+
+  /* Transition for smooth checking animation */
+  transition: all var(--transition-fast);
+}
+
+.todo-checkbox:checked {
+  background-color: var(--sf-blue);
+  border-color: var(--sf-blue);
+}
+
+.todo-checkbox:checked::after {
+  /* Checkmark using pseudo-element */
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.todo-text {
+  /* Typography styling */
+  font-size: 16px;
+  color: var(--sf-text);
+  transition: color var(--transition-fast);
+}
+
+/* Completed todo styling */
+.todo-item.completed .todo-text {
+  color: var(--sf-gray);
+  text-decoration: line-through;
+}
+
+/* Delete button styling */
+.todo-delete {
+  /* Reset button styles */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--sf-gray);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  /* Smooth transition for hover effect */
+  transition: all var(--transition-fast);
+}
+
+.todo-delete:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--sf-error);
+}
+
+/* Empty state message styling */
+.todo-empty {
+  text-align: center;
+  color: var(--sf-secondary-text);
+  padding: var(--spacing-xl);
+}
+
+/* Focus styles for accessibility */
+.todo-input:focus,
+.todo-checkbox:focus,
+.todo-delete:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--sf-blue);
+}

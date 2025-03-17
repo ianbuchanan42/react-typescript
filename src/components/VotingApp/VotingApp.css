@@ -1,0 +1,197 @@
+/* VotingApp.css
+ * This file demonstrates modern CSS concepts and Apple-inspired design principles:
+ * - CSS Grid and Flexbox for layouts
+ * - CSS Custom Properties (variables) for theming
+ * - CSS Transitions and Animations
+ * - BEM-like naming conventions
+ * - Mobile-first responsive design
+ */
+
+/* Main Container
+ * Uses CSS Grid for a responsive, vertical layout
+ * max-width ensures content doesn't stretch too wide on large screens
+ */
+.voting-app {
+  display: grid;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl) 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Form Layout
+ * Uses Flexbox for horizontal alignment with automatic spacing
+ * Switches to vertical layout on mobile
+ */
+.add-option-container {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Options Grid
+ * Uses CSS Grid for responsive card layout
+ * gap property provides consistent spacing
+ */
+.voting-options {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+/* Vote Option Card
+ * Demonstrates:
+ * - CSS Grid for internal layout
+ * - Box shadow and transform for hover effects
+ * - Smooth transitions for interactive elements
+ */
+.vote-option {
+  display: grid;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  background: var(--sf-background);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--sf-border);
+  transition: all var(--transition-fast);
+}
+
+/* Hover Effect
+ * Uses transform and box-shadow for subtle elevation
+ * transition property ensures smooth animation
+ */
+.vote-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Header Layout
+ * Uses Flexbox for space-between alignment
+ * Combines multiple properties for precise typography
+ */
+.vote-option-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Typography Styles
+ * Demonstrates consistent text styling
+ * Uses CSS variables for colors
+ */
+.vote-option-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--sf-text);
+}
+
+.vote-count {
+  font-size: 14px;
+  color: var(--sf-secondary-text);
+}
+
+/* Progress Bar Container
+ * Creates a track for the progress bar
+ * Uses overflow: hidden to contain the animated bar
+ */
+.vote-progress-container {
+  height: 6px;
+  background-color: var(--sf-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* Progress Bar
+ * Demonstrates:
+ * - CSS Custom Properties for dynamic width
+ * - Transitions for smooth animations
+ * - Gradient overlay for depth
+ */
+.vote-progress-bar {
+  height: 100%;
+  background-color: var(--sf-blue);
+  border-radius: 3px;
+  width: var(--progress-width);
+  transition: width var(--transition-normal) ease-in-out;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+}
+
+/* Button Positioning
+ * Uses CSS Grid properties for alignment
+ * Sets minimum width for consistent sizing
+ */
+.vote-button {
+  justify-self: end;
+  min-width: 100px;
+}
+
+/* Reset Button
+ * Demonstrates:
+ * - Opacity transitions for hover effects
+ * - Centered positioning with Grid
+ */
+.reset-button {
+  justify-self: center;
+  margin-top: var(--spacing-lg);
+  background-color: var(--sf-gray);
+  color: white;
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.reset-button:hover {
+  opacity: 1;
+}
+
+/* Vote Count Display
+ * Centers text and uses consistent typography
+ */
+.total-votes {
+  text-align: center;
+  color: var(--sf-secondary-text);
+  font-size: 16px;
+  margin-top: var(--spacing-md);
+}
+
+/* Slide-in Animation
+ * Uses @keyframes for custom animation
+ * Demonstrates transform and opacity animation
+ */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation Application
+ * Applies the slideIn animation to new vote options
+ */
+.vote-option {
+  animation: slideIn var(--transition-normal) ease-out;
+}
+
+/* Responsive Design
+ * Uses media queries for mobile optimization
+ * Adjusts layout and spacing for smaller screens
+ */
+@media (max-width: 600px) {
+  .add-option-container {
+    flex-direction: column;
+  }
+
+  .vote-button {
+    justify-self: stretch;
+  }
+
+  .voting-app {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}
