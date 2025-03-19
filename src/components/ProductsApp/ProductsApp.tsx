@@ -77,52 +77,81 @@ const ProductsApp = () => {
   // Loading and error state handlers
   if (isLoading)
     return (
-      <div role='status' aria-live='polite'>
-        Loading products...
-      </div>
+      <section>
+        <div role='status' aria-live='polite'>
+          Loading products...
+        </div>
+      </section>
     );
-  if (error) return <div role='alert'>Error: {error}</div>;
+  if (error)
+    return (
+      <section>
+        <div role='alert'>Error: {error}</div>
+      </section>
+    );
 
   return (
     <section className='products-container'>
-      <h1>Products Catalog</h1>
+      <header>
+        <h1>Products Catalog</h1>
+      </header>
 
       {/* Display selected products count */}
-      <div className='cart-summary' aria-live='polite'>
-        Items in cart: {selectedProducts.length}
-      </div>
+      <aside className='cart-summary' aria-live='polite'>
+        <h2>Shopping Cart</h2>
+        <p>Items in cart: {selectedProducts.length}</p>
+      </aside>
 
-      <ul className='products-list'>
-        {currentProducts.map((product) => (
-          <li key={product.id} className='product-item'>
-            <article className='product-card'>
-              <h2 className='product-title'>{product.title}</h2>
-              <div className='product-content'>
-                <img
-                  className='product-image'
-                  src={product.image}
-                  alt={`Product: ${product.title}`}
-                  loading='lazy'
-                />
-                <div className='product-details'>
-                  <p className='product-description'>{product.description}</p>
-                  <p className='product-price'>${product.price.toFixed(2)}</p>
-                  <p className='product-category'>
-                    Category: {product.category}
-                  </p>
-                  <button
-                    className='sf-button sf-button--primary add-to-cart-button'
-                    onClick={() => handleProductClick(product)}
-                    aria-label={`Add ${product.title} to cart`}
-                  >
-                    Add to Cart
-                  </button>
+      <section aria-labelledby='products-heading'>
+        <h2 id='products-heading' className='visually-hidden'>
+          Available Products
+        </h2>
+        <section
+          className='products-list'
+          aria-labelledby='products-list'
+          role='list'
+        >
+          {currentProducts.map((product) => (
+            <article key={product.id} className='product-item' role='listitem'>
+              <div className='product-card'>
+                <header>
+                  <h3 className='product-title'>{product.title}</h3>
+                </header>
+                <div className='product-content'>
+                  <figure>
+                    <img
+                      className='product-image'
+                      src={product.image}
+                      alt={`Product: ${product.title}`}
+                      loading='lazy'
+                      width='200'
+                      height='200'
+                    />
+                  </figure>
+                  <div className='product-details'>
+                    <p className='product-description'>{product.description}</p>
+                    <p className='product-price'>
+                      <span className='visually-hidden'>Price: </span>$
+                      {product.price.toFixed(2)}
+                    </p>
+                    <p className='product-category'>
+                      <span className='visually-hidden'>Category: </span>
+                      {product.category}
+                    </p>
+                    <button
+                      className='sf-button sf-button--primary add-to-cart-button'
+                      onClick={() => handleProductClick(product)}
+                      aria-label={`Add ${product.title} to cart`}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
               </div>
             </article>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </section>
+      </section>
 
       {/* Pagination controls */}
       {totalPages > 1 && (
@@ -136,7 +165,7 @@ const ProductsApp = () => {
             Previous
           </button>
 
-          <div className='pagination-numbers'>
+          <div className='pagination-numbers' role='navigation'>
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
