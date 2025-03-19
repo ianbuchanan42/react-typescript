@@ -24,6 +24,7 @@
   /* Custom styling while maintaining Apple's aesthetic */
   flex: 1;
   font-size: 16px;
+  color: var(--sf-text);
   background-color: var(--sf-background);
 }
 
@@ -104,6 +105,7 @@
 .todo-text {
   /* Typography styling */
   font-size: 16px;
+  padding-left: var(--spacing-sm);
   color: var(--sf-text);
   transition: color var(--transition-fast);
 }

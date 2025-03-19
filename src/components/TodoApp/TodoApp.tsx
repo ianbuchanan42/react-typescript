@@ -146,7 +146,7 @@ const TodoApp = () => {
        */}
       <section aria-label='Todo items' className='todo-list-section'>
         {todos.length > 0 ? (
-          <ul className='todo-list' role='list'>
+          <ul className='todo-list'>
             {todos.map((todo) => (
               <li
                 key={todo.id}

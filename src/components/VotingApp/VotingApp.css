@@ -101,17 +101,40 @@
 }
 
 /* Progress Bar
- * Demonstrates:
- * - CSS Custom Properties for dynamic width
- * - Transitions for smooth animations
- * - Gradient overlay for depth
+ * Styling the native progress element
+ * - Custom appearance while maintaining functionality
+ * - Smooth transitions for updates
  */
 .vote-progress-bar {
-  height: 100%;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  border: none;
+  background-color: var(--sf-border);
+  overflow: hidden;
+}
+
+/* Progress Bar Fill */
+.vote-progress-bar::-webkit-progress-bar {
+  background-color: var(--sf-border);
+  border-radius: 3px;
+}
+
+.vote-progress-bar::-webkit-progress-value {
   background-color: var(--sf-blue);
   border-radius: 3px;
-  width: var(--progress-width);
   transition: width var(--transition-normal) ease-in-out;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+}
+
+/* Firefox */
+.vote-progress-bar::-moz-progress-bar {
+  background-color: var(--sf-blue);
+  border-radius: 3px;
   background-image: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0.1) 0%,

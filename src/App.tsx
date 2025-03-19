@@ -8,6 +8,7 @@ import { Suspense, lazy } from 'react';
 const TodoApp = lazy(() => import('./components/TodoApp/TodoApp'));
 const VotingApp = lazy(() => import('./components/VotingApp/VotingApp'));
 const FormApp = lazy(() => import('./components/FormApp/FormApp'));
+const ProductsApp = lazy(() => import('./components/ProductsApp/ProductsApp'));
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           <Link to='/form' className='sf-button'>
             Form App
           </Link>
+          <Link to='/products' className='sf-button'>
+            Products App
+          </Link>
         </div>
       </nav>
 
@@ -41,6 +45,7 @@ function App() {
             <Route path='/' element={<TodoApp />} />
             <Route path='/voting' element={<VotingApp />} />
             <Route path='/form' element={<FormApp />} />
+            <Route path='/products' element={<ProductsApp />} />
           </Routes>
         </Suspense>
       </main>

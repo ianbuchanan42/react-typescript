@@ -119,6 +119,14 @@ body {
   justify-content: space-between;
 }
 
+.sf-flex-gap-md {
+  gap: var(--spacing-md);
+}
+
+.sf-max-height-40 {
+  max-height: 40px;
+}
+
 /* Typography Utilities */
 .sf-text-title {
   font-size: 24px;

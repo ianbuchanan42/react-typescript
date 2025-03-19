@@ -98,12 +98,6 @@ const VoteOption = ({ option }: { option: Option }) => {
   if (!context) throw new Error('VoteOption must be used within VotingContext');
 
   const { dispatch } = context;
-  const percentage =
-    context.state.totalVotes > 0
-      ? (option.votes / context.state.totalVotes) * 100
-      : 0;
-
-  const roundedPercentage = Math.round(percentage);
 
   return (
     <article className='vote-option'>
@@ -115,17 +109,16 @@ const VoteOption = ({ option }: { option: Option }) => {
       </header>
 
       {/*
-       * Progress meter using semantic elements
-       * Using <progress> for native accessibility support
+       * Progress meter using native <progress> element
+       * - Native accessibility support
+       * - Built-in progress visualization
+       * - Automatic updates
        */}
-      <div className='vote-progress-container'>
-        <progress
-          className='vote-progress-bar'
-          value={percentage}
-          max='100'
-          aria-label={`${roundedPercentage}% of total votes`}
-        />
-      </div>
+      <progress
+        className='vote-progress-bar'
+        value={option.votes}
+        max={context.state.totalVotes || 1}
+      />
 
       <button
         id={`vote-button-${option.id}`}

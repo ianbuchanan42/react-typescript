@@ -298,6 +298,7 @@ const FormApp = () => {
        * - aria-live: Announces validation errors to screen readers
        */}
       <form
+        id='contact-form'
         onSubmit={handleSubmit}
         className='contact-form'
         noValidate
@@ -360,13 +361,15 @@ const FormApp = () => {
       </form>
 
       {/*
-       * Using <div role="alert"> for success message
-       * role="alert" ensures screen readers announce the message immediately
+       * Using <output> for success message
+       * - Semantically represents the result of form submission
+       * - Has built-in ARIA live region behavior
+       * - No need for role="alert" as output is inherently live
        */}
       {showSuccess && (
-        <div className='success-message' role='alert'>
+        <output className='success-message' htmlFor='contact-form'>
           Message sent successfully!
-        </div>
+        </output>
       )}
     </section>
   );
